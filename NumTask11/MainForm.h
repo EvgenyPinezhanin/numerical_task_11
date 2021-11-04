@@ -87,26 +87,7 @@ namespace NumTask11 {
 		rkm_method* rkm;
 
 		CONTROL control;
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ Chart1;
-	public:
-
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ Chart2;
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ Chart3;
-	private: System::Windows::Forms::ToolTip^ mToolTip;
-	private: System::Windows::Forms::ToolTip^ kToolTip;
-	private: System::Windows::Forms::ToolTip^ fToolTip;
-	private: System::Windows::Forms::ToolTip^ h0ToolTip;
-	private: System::Windows::Forms::ToolTip^ NmaxToolTip;
-	private: System::Windows::Forms::ToolTip^ bToolTip;
-	private: System::Windows::Forms::ToolTip^ EgrToolTip;
-	private: System::Windows::Forms::ToolTip^ EminToolTip;
-
-
-
-
-	public:
-
-		   VNEXT vnext;
+		VNEXT vnext;
 
 		MainForm(void)
 		{
@@ -190,9 +171,34 @@ namespace NumTask11 {
 	private: System::Windows::Forms::Label^ EgrLabel;
 	private: System::Windows::Forms::Label^ BLabel;
 	private: System::Windows::Forms::Label^ NMaxLabel;
-private: System::ComponentModel::IContainer^ components;
-
-
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ Chart1;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ Chart2;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ Chart3;
+	private: System::Windows::Forms::ToolTip^ mToolTip;
+	private: System::Windows::Forms::ToolTip^ kToolTip;
+	private: System::Windows::Forms::ToolTip^ fToolTip;
+	private: System::Windows::Forms::ToolTip^ h0ToolTip;
+	private: System::Windows::Forms::ToolTip^ NmaxToolTip;
+	private: System::Windows::Forms::ToolTip^ bToolTip;
+	private: System::Windows::Forms::ToolTip^ EgrToolTip;
+	private: System::Windows::Forms::ToolTip^ EminToolTip;
+	private: System::Windows::Forms::DataGridView^ Table;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ n;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ hn_1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ xn;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ vn;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ vdn;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ vCapn;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ vCapdn;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ s_star;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ vn_res;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ vdn_res;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ un;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ udn;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ un_vn;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dec_step;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ inc_step;
+	private: System::ComponentModel::IContainer^ components;
 
 	protected:
 
@@ -210,21 +216,21 @@ private: System::ComponentModel::IContainer^ components;
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::Title^ title1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Title());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::Title^ title2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Title());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea3 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series6 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::Title^ title3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Title());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea4 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series7 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series8 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Title^ title4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Title());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea5 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series9 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series10 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Title^ title5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Title());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea6 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend6 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series11 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series12 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Title^ title6 = (gcnew System::Windows::Forms::DataVisualization::Charting::Title());
 			this->MenuStrip = (gcnew System::Windows::Forms::MenuStrip());
 			this->StartMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->TaskMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -270,6 +276,22 @@ private: System::ComponentModel::IContainer^ components;
 			this->bToolTip = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->EgrToolTip = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->EminToolTip = (gcnew System::Windows::Forms::ToolTip(this->components));
+			this->Table = (gcnew System::Windows::Forms::DataGridView());
+			this->n = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->hn_1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->xn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vdn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vCapn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vCapdn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->s_star = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vn_res = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vdn_res = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->un = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->udn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->un_vn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dec_step = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->inc_step = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->MenuStrip->SuspendLayout();
 			this->ParamSystBox->SuspendLayout();
 			this->NUBox->SuspendLayout();
@@ -278,6 +300,7 @@ private: System::ComponentModel::IContainer^ components;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Chart1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Chart2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Chart3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Table))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// MenuStrip
@@ -608,90 +631,211 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			// Chart1
 			// 
-			chartArea1->Name = L"ChartArea1";
-			this->Chart1->ChartAreas->Add(chartArea1);
-			legend1->Name = L"Legend1";
-			this->Chart1->Legends->Add(legend1);
+			chartArea4->Name = L"ChartArea1";
+			this->Chart1->ChartAreas->Add(chartArea4);
+			legend4->Name = L"Legend1";
+			this->Chart1->Legends->Add(legend4);
 			this->Chart1->Location = System::Drawing::Point(60, 520);
 			this->Chart1->Name = L"Chart1";
-			series1->ChartArea = L"ChartArea1";
-			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
-			series1->Legend = L"Legend1";
-			series1->Name = L"Истинное решение";
-			series2->ChartArea = L"ChartArea1";
-			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
-			series2->Legend = L"Legend1";
-			series2->Name = L"Численное решение";
-			this->Chart1->Series->Add(series1);
-			this->Chart1->Series->Add(series2);
+			series7->ChartArea = L"ChartArea1";
+			series7->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series7->Legend = L"Legend1";
+			series7->Name = L"Истинное решение";
+			series8->ChartArea = L"ChartArea1";
+			series8->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series8->Legend = L"Legend1";
+			series8->Name = L"Численное решение";
+			this->Chart1->Series->Add(series7);
+			this->Chart1->Series->Add(series8);
 			this->Chart1->Size = System::Drawing::Size(300, 300);
 			this->Chart1->TabIndex = 9;
 			this->Chart1->Text = L"Chart1";
-			title1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			title4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			title1->Name = L"Title1";
-			title1->Text = L"График зависимости v(x)";
-			this->Chart1->Titles->Add(title1);
+			title4->Name = L"Title1";
+			title4->Text = L"График зависимости v(x)";
+			this->Chart1->Titles->Add(title4);
 			// 
 			// Chart2
 			// 
-			chartArea2->Name = L"ChartArea1";
-			this->Chart2->ChartAreas->Add(chartArea2);
-			legend2->Name = L"Legend1";
-			this->Chart2->Legends->Add(legend2);
+			chartArea5->Name = L"ChartArea1";
+			this->Chart2->ChartAreas->Add(chartArea5);
+			legend5->Name = L"Legend1";
+			this->Chart2->Legends->Add(legend5);
 			this->Chart2->Location = System::Drawing::Point(366, 520);
 			this->Chart2->Name = L"Chart2";
-			series3->ChartArea = L"ChartArea1";
-			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
-			series3->Legend = L"Legend1";
-			series3->Name = L"Истинное решение";
-			series4->ChartArea = L"ChartArea1";
-			series4->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
-			series4->Legend = L"Legend1";
-			series4->Name = L"Численное решение";
-			this->Chart2->Series->Add(series3);
-			this->Chart2->Series->Add(series4);
+			series9->ChartArea = L"ChartArea1";
+			series9->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series9->Legend = L"Legend1";
+			series9->Name = L"Истинное решение";
+			series10->ChartArea = L"ChartArea1";
+			series10->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series10->Legend = L"Legend1";
+			series10->Name = L"Численное решение";
+			this->Chart2->Series->Add(series9);
+			this->Chart2->Series->Add(series10);
 			this->Chart2->Size = System::Drawing::Size(300, 300);
 			this->Chart2->TabIndex = 10;
 			this->Chart2->Text = L"Chart2";
-			title2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			title5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			title2->Name = L"Title1";
-			title2->Text = L"График зависимости v\'(x)";
-			this->Chart2->Titles->Add(title2);
+			title5->Name = L"Title1";
+			title5->Text = L"График зависимости v\'(x)";
+			this->Chart2->Titles->Add(title5);
 			// 
 			// Chart3
 			// 
-			chartArea3->Name = L"ChartArea1";
-			this->Chart3->ChartAreas->Add(chartArea3);
-			legend3->Name = L"Legend1";
-			this->Chart3->Legends->Add(legend3);
+			chartArea6->Name = L"ChartArea1";
+			this->Chart3->ChartAreas->Add(chartArea6);
+			legend6->Name = L"Legend1";
+			this->Chart3->Legends->Add(legend6);
 			this->Chart3->Location = System::Drawing::Point(672, 520);
 			this->Chart3->Name = L"Chart3";
-			series5->ChartArea = L"ChartArea1";
-			series5->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
-			series5->Legend = L"Legend1";
-			series5->Name = L"Истинное решение";
-			series6->ChartArea = L"ChartArea1";
-			series6->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
-			series6->Legend = L"Legend1";
-			series6->Name = L"Численное решение";
-			this->Chart3->Series->Add(series5);
-			this->Chart3->Series->Add(series6);
+			series11->ChartArea = L"ChartArea1";
+			series11->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series11->Legend = L"Legend1";
+			series11->Name = L"Истинное решение";
+			series12->ChartArea = L"ChartArea1";
+			series12->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series12->Legend = L"Legend1";
+			series12->Name = L"Численное решение";
+			this->Chart3->Series->Add(series11);
+			this->Chart3->Series->Add(series12);
 			this->Chart3->Size = System::Drawing::Size(300, 300);
 			this->Chart3->TabIndex = 11;
 			this->Chart3->Text = L"Chart3";
-			title3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			title6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			title3->Name = L"Title1";
-			title3->Text = L"График зависимости v\'(v)";
-			this->Chart3->Titles->Add(title3);
+			title6->Name = L"Title1";
+			title6->Text = L"График зависимости v\'(v)";
+			this->Chart3->Titles->Add(title6);
+			// 
+			// Table
+			// 
+			this->Table->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->Table->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(15) {
+				this->n, this->hn_1,
+					this->xn, this->vn, this->vdn, this->vCapn, this->vCapdn, this->s_star, this->vn_res, this->vdn_res, this->un, this->udn, this->un_vn,
+					this->dec_step, this->inc_step
+			});
+			this->Table->Location = System::Drawing::Point(403, 31);
+			this->Table->Name = L"Table";
+			this->Table->RowHeadersWidth = 51;
+			this->Table->RowTemplate->Height = 24;
+			this->Table->Size = System::Drawing::Size(956, 451);
+			this->Table->TabIndex = 12;
+			// 
+			// n
+			// 
+			this->n->HeaderText = L"n";
+			this->n->MinimumWidth = 6;
+			this->n->Name = L"n";
+			this->n->Width = 125;
+			// 
+			// hn_1
+			// 
+			this->hn_1->HeaderText = L"hₙ₋₁";
+			this->hn_1->MinimumWidth = 6;
+			this->hn_1->Name = L"hn_1";
+			this->hn_1->Width = 125;
+			// 
+			// xn
+			// 
+			this->xn->HeaderText = L"xₙ";
+			this->xn->MinimumWidth = 6;
+			this->xn->Name = L"xn";
+			this->xn->Width = 125;
+			// 
+			// vn
+			// 
+			this->vn->HeaderText = L"vₙ";
+			this->vn->MinimumWidth = 6;
+			this->vn->Name = L"vn";
+			this->vn->Width = 125;
+			// 
+			// vdn
+			// 
+			this->vdn->HeaderText = L"v\'ₙ";
+			this->vdn->MinimumWidth = 6;
+			this->vdn->Name = L"vdn";
+			this->vdn->Width = 125;
+			// 
+			// vCapn
+			// 
+			this->vCapn->HeaderText = L"v̂ₙ";
+			this->vCapn->MinimumWidth = 6;
+			this->vCapn->Name = L"vCapn";
+			this->vCapn->Width = 125;
+			// 
+			// vCapdn
+			// 
+			this->vCapdn->HeaderText = L"v̂\'ₙ";
+			this->vCapdn->MinimumWidth = 6;
+			this->vCapdn->Name = L"vCapdn";
+			this->vCapdn->Width = 125;
+			// 
+			// s_star
+			// 
+			this->s_star->HeaderText = L"S*";
+			this->s_star->MinimumWidth = 6;
+			this->s_star->Name = L"s_star";
+			this->s_star->Width = 125;
+			// 
+			// vn_res
+			// 
+			this->vn_res->HeaderText = L"vₙ итог";
+			this->vn_res->MinimumWidth = 6;
+			this->vn_res->Name = L"vn_res";
+			this->vn_res->Width = 125;
+			// 
+			// vdn_res
+			// 
+			this->vdn_res->HeaderText = L"v\'ₙ итог";
+			this->vdn_res->MinimumWidth = 6;
+			this->vdn_res->Name = L"vdn_res";
+			this->vdn_res->Width = 125;
+			// 
+			// un
+			// 
+			this->un->HeaderText = L"uₙ";
+			this->un->MinimumWidth = 6;
+			this->un->Name = L"un";
+			this->un->Width = 125;
+			// 
+			// udn
+			// 
+			this->udn->HeaderText = L"u\'ₙ";
+			this->udn->MinimumWidth = 6;
+			this->udn->Name = L"udn";
+			this->udn->Width = 125;
+			// 
+			// un_vn
+			// 
+			this->un_vn->HeaderText = L"|Uₙ-Vₙ итог|";
+			this->un_vn->MinimumWidth = 6;
+			this->un_vn->Name = L"un_vn";
+			this->un_vn->Width = 125;
+			// 
+			// dec_step
+			// 
+			this->dec_step->HeaderText = L"Ум. шага";
+			this->dec_step->MinimumWidth = 6;
+			this->dec_step->Name = L"dec_step";
+			this->dec_step->Width = 125;
+			// 
+			// inc_step
+			// 
+			this->inc_step->HeaderText = L"Ув. шага";
+			this->inc_step->MinimumWidth = 6;
+			this->inc_step->Name = L"inc_step";
+			this->inc_step->Width = 125;
 			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1661, 936);
+			this->Controls->Add(this->Table);
 			this->Controls->Add(this->Chart3);
 			this->Controls->Add(this->Chart2);
 			this->Controls->Add(this->Chart1);
@@ -717,6 +861,7 @@ private: System::ComponentModel::IContainer^ components;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Chart1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Chart2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Chart3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Table))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -818,7 +963,8 @@ private: System::ComponentModel::IContainer^ components;
 		rkm->setH0(h0);
 		rkm->setControl(Nmax, b, Egr, E, Emin, control, vnext);
 		rkm->solve(*X, *H, *V, *V_cap, *OLP_Arr, *V_res, *step_dec, *step_inc);
-		int N = X->size();
+		// переделать
+		int N = (int)X->size();
 
 		U->resize(2);
 		(*U)[0].resize(N);

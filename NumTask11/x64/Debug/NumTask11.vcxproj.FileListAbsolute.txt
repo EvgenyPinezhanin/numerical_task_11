@@ -1,0 +1,6 @@
+C:\Users\pinez\Downloads\git\numerical_task_11\NumTask11\x64\Debug\NumTask11.vcxproj.AssemblyReference.cache
+C:\Users\pinez\Downloads\git\numerical_task_11\NumTask11\x64\Debug\NumTask11.MainForm.resources
+C:\Users\pinez\Downloads\git\numerical_task_11\NumTask11\x64\Debug\NumTask11.MethodForm.resources
+C:\Users\pinez\Downloads\git\numerical_task_11\NumTask11\x64\Debug\NumTask11.resource.resources
+C:\Users\pinez\Downloads\git\numerical_task_11\NumTask11\x64\Debug\NumTask11.TaskForm.resources
+C:\Users\pinez\Downloads\git\numerical_task_11\NumTask11\x64\Debug\NumTask11.vcxproj.GenerateResource.cache
