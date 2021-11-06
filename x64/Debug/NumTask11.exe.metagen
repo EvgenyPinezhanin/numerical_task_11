@@ -52,3 +52,6 @@ Class NumTask11.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     rkm_method* rkm : Public
     CONTROL control : Public
     VNEXT vnext : Public
+    UInt64 N : Public
+    std.vector<NumTask11::Info\,std::allocator<NumTask11::Info> >* info_array : Public
+    Int32 count_trial : Public

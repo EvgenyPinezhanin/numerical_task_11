@@ -1,15 +1,29 @@
 #include"numerical.h"
 
-rkm_method::rkm_method(double (*_f1)(double, double, double), double (*_f2)(double, double, double), double _x0, double _u0,
-    double _ud0, double _h0, int _Nmax, double _b, double _Egr, double _E, double _Emin, CONTROL _control, VNEXT _vnext)
+rkm_method::rkm_method(double (*_f1)(double, double, double), bool _linear1, double (*_f2)(double, double, double), bool _linear2,
+    double _x0, double _u0, double _ud0, double _h0, int _Nmax, double _b, double _Egr, double _E, double _Emin, CONTROL _control, VNEXT _vnext)
     : f(2), x0(_x0), u0(_u0), h0(_h0), Nmax(_Nmax), b(_b), Egr(_Egr), E(_E), Emin(_Emin), control(_control), vnext(_vnext) {
     f[0] = _f1;
+    isLinear[0] = _linear1;
     f[1] = _f2;
+    isLinear[1] = _linear2;
+    if (isLinear[0] && isLinear[1]) {
+        p = 4;
+    } else {
+        p = 3;
+    }
 }
 
-void rkm_method::setFunc(double (*_f1)(double, double, double), double (*_f2)(double, double, double)) {
+void rkm_method::setFunc(double (*_f1)(double, double, double), bool _linear1, double (*_f2)(double, double, double), bool _linear2) {
     f[0] = _f1;
+    isLinear[0] = _linear1;
     f[1] = _f2;
+    isLinear[1] = _linear2;
+    if (isLinear[0] && isLinear[1]) {
+        p = 4;
+    } else {
+        p = 3;
+    }
 }
 void rkm_method::setSC(double _x0, double _u0, double _ud0) {
     x0 = _x0;
@@ -19,7 +33,7 @@ void rkm_method::setSC(double _x0, double _u0, double _ud0) {
 void rkm_method::setH0(double _h0) {
     h0 = _h0;
 }
-void rkm_method::setControl(int _Nmax, double _b, double _Egr, double _E, double _Emin, CONTROL _control, VNEXT _vnext) {
+void rkm_method::setControl(CONTROL _control, VNEXT _vnext, int _Nmax, double _b, double _Egr, double _E, double _Emin) {
     Nmax = _Nmax;
     b = _b;
     Egr = _Egr;
@@ -27,6 +41,10 @@ void rkm_method::setControl(int _Nmax, double _b, double _Egr, double _E, double
     Emin = _Emin;
     control = _control;
     vnext = _vnext;
+}
+
+int rkm_method::getP() {
+    return p;
 }
 
 void rkm_method::solve(vector<double>& X, vector<double>& H, vector<vector<double>>& V, vector<vector<double>>& V_cap,
@@ -61,6 +79,7 @@ void rkm_method::solve(vector<double>& X, vector<double>& H, vector<vector<doubl
         xN_1 = xN + hN;
         if (xN_1 > b) {
             hN -= xN_1 - (b - Egr / 2.0);
+            H[N] = hN;
             step_d++;
             continue;
         }
@@ -69,19 +88,20 @@ void rkm_method::solve(vector<double>& X, vector<double>& H, vector<vector<doubl
             k[0][i] = f[i](xN, vN[0], vN[1]);
         }
         for (int i = 0; i < 2; i++) {
-            k[1][i] = f[i](xN + hN / 3.0, vN[0] + hN / 3.0 * k[0][0], vN[1] + hN / 3.0 * k[0][1]);
+            k[1][i] = f[i](xN + hN / 3.0, vN[0] + hN / 3.0 * k[0][0], 
+                                          vN[1] + hN / 3.0 * k[0][1]);
         }
         for (int i = 0; i < 2; i++) {
             k[2][i] = f[i](xN + hN / 3.0, vN[0] + hN / 6.0 * k[0][0] + hN / 6.0 * k[1][0],
-                vN[1] + hN / 6.0 * k[0][1] + hN / 6.0 * k[1][1]);
+                                          vN[1] + hN / 6.0 * k[0][1] + hN / 6.0 * k[1][1]);
         }
         for (int i = 0; i < 2; i++) {
-            k[3][i] = f[i](xN + hN / 2.0, vN[0] + hN / 8.0 * k[0][0] + 3.0 * hN / 6.0 * k[2][0],
-                vN[1] + hN / 8.0 * k[0][1] + 3.0 * hN / 8.0 * k[2][1]);
+            k[3][i] = f[i](xN + hN / 2.0, vN[0] + hN / 8.0 * k[0][0] + 3.0 * hN / 8.0 * k[2][0],
+                                          vN[1] + hN / 8.0 * k[0][1] + 3.0 * hN / 8.0 * k[2][1]);
         }
         for (int i = 0; i < 2; i++) {
             k[4][i] = f[i](xN_1, vN[0] + hN / 2.0 * k[0][0] - 3.0 * hN / 2.0 * k[2][0] + 2.0 * hN * k[3][0],
-                vN[1] + hN / 2.0 * k[0][1] - 3.0 * hN / 2.0 * k[2][1] + 2.0 * hN * k[3][1]);
+                                 vN[1] + hN / 2.0 * k[0][1] - 3.0 * hN / 2.0 * k[2][1] + 2.0 * hN * k[3][1]);
         }
 
         for (int i = 0; i < 2; i++) {
@@ -98,11 +118,12 @@ void rkm_method::solve(vector<double>& X, vector<double>& H, vector<vector<doubl
             vCorN_1[i] = vN_1[i] + S[i];
         }
 
-        Sabs = sqrt(S[0] * S[0] + S[1] * S[1]);
+        Sabs = max(abs(S[0]), abs(S[1]));
 
         if (control != CONST) {
             if (Sabs > E) {
                 hN /= 2.0;
+                H[N] = hN;
                 step_d++;
                 continue;
             }
