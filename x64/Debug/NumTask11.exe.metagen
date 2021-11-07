@@ -44,11 +44,9 @@ Class NumTask11.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     std.vector<double\,std::allocator<double> >* X : Public
     std.vector<double\,std::allocator<double> >* OLP_Arr : Public
     std.vector<double\,std::allocator<double> >* H : Public
-    std.vector<double\,std::allocator<double> >* U_V : Public
     std.vector<std::vector<double\,std::allocator<double> >\,std::allocator<std::vector<double\,std::allocator<double> > > >* V : Public
     std.vector<std::vector<double\,std::allocator<double> >\,std::allocator<std::vector<double\,std::allocator<double> > > >* V_cap : Public
     std.vector<std::vector<double\,std::allocator<double> >\,std::allocator<std::vector<double\,std::allocator<double> > > >* V_res : Public
-    std.vector<std::vector<double\,std::allocator<double> >\,std::allocator<std::vector<double\,std::allocator<double> > > >* U : Public
     std.vector<int\,std::allocator<int> >* step_dec : Public
     std.vector<int\,std::allocator<int> >* step_inc : Public
     rkm_method* rkm : Public
