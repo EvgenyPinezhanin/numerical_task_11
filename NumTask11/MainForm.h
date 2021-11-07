@@ -17,6 +17,7 @@ namespace NumTask11 {
 	using namespace System::Drawing;
 	using namespace System::Reflection;
 
+	// Структура для хранения информации об испытании
 	struct Info {
 		VNEXT vnext;
 		double m, k, f, f_st;
@@ -64,6 +65,7 @@ namespace NumTask11 {
 		return false;
 	}
 
+	// Поиск индекса максимального элемента в vector
 	template<typename T>
 	int max_elem_ind(const vector<T>& arr) {
 		if (arr.empty()) return -1;
@@ -78,6 +80,7 @@ namespace NumTask11 {
 		return ind;
 	}
 
+	// Поиск индекса минимального элемента в vector
 	template<typename T>
 	int min_elem_ind(const vector<T>& arr) {
 		if (arr.empty()) return -1;
@@ -92,6 +95,7 @@ namespace NumTask11 {
 		return ind;
 	}
 
+	// Нахождение суммы элементов в vector
 	template<typename T>
 	int sum_elem(const vector<T>& arr) {
 		T sum = T(0);
@@ -101,28 +105,26 @@ namespace NumTask11 {
 		return sum;
 	}
 
-	template<typename T>
-	void abs_arr(vector<T>& arr) {
-		for (int i = 0; i < arr.size(); i++) {
-			arr[i] = abs(arr[i]);
-		}
-	}
-
 	// Функция signum
 	template <typename T> int sgn(T val) {
 		return (T(0) < val) - (val < T(0));
 	}
 
+	// Параметры задания
 	double m, k, f, f_st;
+	// Начальные условия
 	double x0, u0, ud0;
-	double g = 9.81;
+	// Ускорение свободного падения
+	const double g = 9.81;
 	// F = f / f*, a - "+" граница области застоя, T - период колебаний
 	double F, a, T; 
 
+	// ДУ для u'
 	double ud(double x, double u1, double u2) {
 		return u2;
 	}
 
+	// ДУ для u''
 	double udd(double x, double u1, double u2) {
 		if (u2 != 0) {
 			return -sgn(u2) * f * g - k / m * u1;
@@ -133,9 +135,9 @@ namespace NumTask11 {
 				return sgn(k * u1) * f_st * g - k / m * u1;
 			}
 		}
-
 	}
 
+	// Решение для u(x)
 	double f1(double x) {
 		int n = (int)(x / (T / 2.0));
 		double pi = (u0 < 0) ? M_PI : 0.0;
@@ -148,6 +150,7 @@ namespace NumTask11 {
 		}
 	}
 
+	// Решение для u'(x)
 	double f2(double x) {
 		int n = (int)(x / (T / 2.0));
 		double pi = (u0 < 0) ? M_PI : 0.0;
@@ -161,22 +164,38 @@ namespace NumTask11 {
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
 	public:
+		// Начальный шаг
 		double h0;
+		// Максимальное количество шагов
 		int Nmax;
+		// Параметры контроля
 		double b, Egr, E, Emin;
+		// Тип контроля
+		CONTROL control;
+		// Способ счета
+		VNEXT vnext;
 
+		// Vector's для хранения информации после испытания
 		vector<double>* X, * OLP_Arr, * H, * U_V;
 		vector<vector<double>>* V, * V_cap, * V_res, * U;
 		vector<int>* step_dec, * step_inc;
+
+		// Объект метода
 		rkm_method* rkm;
 
-		CONTROL control;
-		VNEXT vnext;
-
+		// Итоговое количество шагов + 1
 		size_t N;
+		// Vector для хранения справки после испытания
 		vector<Info> *info_array;
 
+		// Переменная для нумерования кривых на графиках
 		int count_trial;
+		
+		// Окно с информацией о методе
+		MethodForm^ mForm;
+
+		// Окно с информацией о задании
+		TaskForm^ tForm;
 
 		MainForm(void)
 		{
@@ -201,11 +220,15 @@ namespace NumTask11 {
 
 			info_array = new vector<Info>;
 
+			count_trial = 0;
+
+			// Установка двойной буфферизации
 			SetDoubleBuffered(Table, true);
 			SetDoubleBuffered(Chart1, true);
 			SetDoubleBuffered(Chart2, true);
 			SetDoubleBuffered(Chart3, true);
 			
+			// Устанвка всплывающих подсказок
 			mToolTip->SetToolTip(mLabel, "Масса груза");
 			kToolTip->SetToolTip(kLabel, "Жесткость пружины");
 			fToolTip->SetToolTip(fLabel, "Коэффициент пропорциональности силы трения");
@@ -220,7 +243,9 @@ namespace NumTask11 {
 			EminToolTip->SetToolTip(EminLabel, "Параметр контроля локальной погрешности \"снизу\"");
 			defButToolTip->SetToolTip(DefEminButton, L" Eₘᵢₙ = E / 2^(p + 1), p - порядок метода");
 
-			count_trial = 0;
+			// Инициализация окон
+			mForm = gcnew MethodForm();
+			tForm = gcnew TaskForm();
 		}
 
 	protected:
@@ -320,7 +345,7 @@ namespace NumTask11 {
 	private: System::Windows::Forms::ToolTip^ ud0ToolTip;
 	private: System::Windows::Forms::ToolTip^ bToolTip;
 	private: System::ComponentModel::IContainer^ components;
-#pragma endregion declaration
+#pragma endregion
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -1179,6 +1204,8 @@ namespace NumTask11 {
 
 		}
 #pragma endregion
+
+	// Добавление новых линий на графики
 	private: System::Void addSeries() {
 		count_trial++;
 		DataVisualization::Charting::Series^ series_true_1 = (gcnew DataVisualization::Charting::Series());
@@ -1233,6 +1260,7 @@ namespace NumTask11 {
 		this->Chart3->Series->Add(series_true_3);
 		this->Chart3->Series->Add(series_numeric_3);
 	}
+	// Вывод справки
 	private: System::Void printInfo(Info inf) {
 		InfoTextBox->Text += "№ варианта задания: 5" + Environment::NewLine;
 		InfoTextBox->Text += "Тип задачи: тестовая" + Environment::NewLine;
@@ -1279,7 +1307,7 @@ namespace NumTask11 {
 		InfoTextBox->SelectionStart = InfoTextBox->Text->Length;
 		InfoTextBox->ScrollToCaret();
 	}
-
+	// Запуск испытания
 	private: System::Void StartMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (!Double::TryParse(mTextBox->Text, System::Globalization::NumberStyles::Float, System::Globalization::CultureInfo::InvariantCulture, m)) {
 			MessageBox::Show("m не число", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
@@ -1391,10 +1419,12 @@ namespace NumTask11 {
 		}
 		N = X->size();
 
+		// Установка параметров необходимых для поиска истинного решения
 		F = f / f_st;
 		a = f_st * m * g / k;
 		T = 2 * M_PI / sqrt(k / m);
 
+		// Поиск истинных решений и разницы между истинным решением и численным
 		U->resize(2);
 		(*U)[0].resize(N);
 		(*U)[1].resize(N);
@@ -1405,12 +1435,12 @@ namespace NumTask11 {
 			(*U_V)[i] = sqrt(pow((*U)[0][i] - (*V)[0][i], 2) + pow((*U)[1][i] - (*V)[1][i], 2));
 		}
 
-		addSeries();
 		// Рисование графиков
+		addSeries();
+		double r1, r2;
 		for (double i = x0; i < b; i += 0.001) {
 			if (!Double::IsNaN(f1(i)) && !Double::IsNaN(f2(i)) && double_in_dec(f1(i)) && double_in_dec(f2(i))) {
-				double r1 = f1(i);
-				double r2 = f2(i);
+				r1 = f1(i); r2 = f2(i);
 				Chart1->Series["Истинное решение №" + count_trial.ToString()]->Points->AddXY(i, r1);
 				Chart2->Series["Истинное решение №" + count_trial.ToString()]->Points->AddXY(i, r2);
 				Chart3->Series["Истинное решение №" + count_trial.ToString()]->Points->AddXY(r1, r2);
@@ -1424,7 +1454,6 @@ namespace NumTask11 {
 			}
 		}
 		
-
 		//Заполнение таблицы
 		if (Table->Rows->Count < N) {
 			int k = (int)N - Table->Rows->Count;
@@ -1491,14 +1520,15 @@ namespace NumTask11 {
 		info_array->push_back(inf);
 		printInfo(inf);
 	}
+	// Вывод задания
 	private: System::Void TaskMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		TaskForm^ tForm = gcnew TaskForm();
 		tForm->Show();
 	}
+	// Вывод информации о методе
 	private: System::Void MethodMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		MethodForm^ mForm = gcnew MethodForm();
 		mForm->Show();
 	}
+
 	private: System::Void ControlComboBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		if (ControlComboBox->SelectedIndex == 2) {
 			EminTextBox->Enabled = false;
@@ -1510,6 +1540,7 @@ namespace NumTask11 {
 			ETextBox->Enabled = true;
 		}
 	}
+	// Вычисление Emin
 	private: System::Void DefEminButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (!Double::TryParse(ETextBox->Text, System::Globalization::NumberStyles::Float, System::Globalization::CultureInfo::InvariantCulture, E)) {
 			MessageBox::Show("E не число", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
@@ -1521,6 +1552,7 @@ namespace NumTask11 {
 		}
 		EminTextBox->Text = (E / pow(2, rkm->getP() + 1)).ToString("N17", System::Globalization::CultureInfo::InvariantCulture);
 	}
+	// Выпавнивание графиков
 	private: System::Void AlignChartMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		Chart1Container->SplitterDistance = (int)(Chart1Container->Size.Width / 3.0 * 2.0);
 		Chart2Container->SplitterDistance = (int)(Chart2Container->Size.Width / 2.0);

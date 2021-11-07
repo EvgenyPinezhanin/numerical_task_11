@@ -39,6 +39,8 @@ Class NumTask11.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Double Egr : Public
     Double E : Public
     Double Emin : Public
+    CONTROL control : Public
+    VNEXT vnext : Public
     std.vector<double\,std::allocator<double> >* X : Public
     std.vector<double\,std::allocator<double> >* OLP_Arr : Public
     std.vector<double\,std::allocator<double> >* H : Public
@@ -50,8 +52,8 @@ Class NumTask11.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     std.vector<int\,std::allocator<int> >* step_dec : Public
     std.vector<int\,std::allocator<int> >* step_inc : Public
     rkm_method* rkm : Public
-    CONTROL control : Public
-    VNEXT vnext : Public
     UInt64 N : Public
     std.vector<NumTask11::Info\,std::allocator<NumTask11::Info> >* info_array : Public
     Int32 count_trial : Public
+    NumTask11.MethodForm mForm : Public
+    NumTask11.TaskForm tForm : Public

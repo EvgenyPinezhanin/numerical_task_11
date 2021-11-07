@@ -98,13 +98,19 @@ namespace NumTask11 {
 			this->Name = L"MethodForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"О методе";
+			this->Closing  += gcnew CancelEventHandler(this, &MethodForm::MethodForm_Closing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureMethod))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	private: System::Void OKButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		MethodForm::Close();
+		MethodForm::Hide();
+	}
+
+	private: System::Void MethodForm_Closing(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
+		e->Cancel = true;
+		MethodForm::Hide();
 	}
 	};
 }

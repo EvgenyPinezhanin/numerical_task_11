@@ -97,13 +97,18 @@ namespace NumTask11 {
 			this->Name = L"TaskForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Условия задачи";
+			this->Closing += gcnew CancelEventHandler(this, &TaskForm::TaskForm_Closing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PictureTask))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	private: System::Void OKButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		TaskForm::Close();
+		TaskForm::Hide();
+	}
+	private: System::Void TaskForm_Closing(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
+		e->Cancel = true;
+		TaskForm::Hide();
 	}
 	};
 }
