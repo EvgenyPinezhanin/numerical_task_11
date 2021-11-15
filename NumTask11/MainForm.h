@@ -33,15 +33,16 @@ namespace NumTask11 {
 		//double maxE, xn_maxE;
 		double maxS, xn_maxS;
 		double minS, xn_minS;
-		double count_dec, count_inc;
+		int count_dec, count_inc;
 		double maxH, xn_1_maxH;
 		double minH, xn_1_minH;
 	
-		Info(VNEXT _vnext, double _m, double _k, double _f, double _f_st, double _x0, double _u0, double _ud0, double _b, double _Egr, 
-			double _h0, int _Nmax, double _E, double _Emin, CONTROL _control, int _N, double _b_xn, double _xn, double _vn_res, double _vdn_res,
-			/* double _maxE, double _xn_maxE, */ double _maxS, double _xn_maxS, double _minS, double _xn_minS, double _count_dec, double _count_inc,
-			double _maxH, double _xn_1_maxH, double _minH, double _xn_1_minH) : vnext(_vnext), m(_m), k(_k), f(_f), f_st(_f_st), x0(_x0), 
-			u0(_u0), ud0(_ud0), b(_b), Egr(_Egr), h0(_h0), Nmax(_Nmax), E(_E), Emin(_Emin), control(_control), N(_N), b_xn(_b_xn), xn(_xn), 
+		Info(VNEXT _vnext = VN, double _m = 0.0, double _k = 0.0, double _f = 0.0, double _f_st = 0.0, double _x0 = 0.0 , double _u0 = 0.0, 
+			double _ud0 = 0.0, double _b = 0.0, double _Egr = 0.0, double _h0 = 0.0, int _Nmax = 0, double _E = 0.0, double _Emin = 0.0, 
+			CONTROL _control =UPDOWN, int _N = 0, double _b_xn = 0.0, double _xn = 0.0, double _vn_res = 0.0, double _vdn_res = 0.0, /* double _maxE, 
+			double _xn_maxE, */ double _maxS = 0.0, double _xn_maxS = 0.0, double _minS = 0.0, double _xn_minS = 0.0, int _count_dec = 0, int _count_inc = 0,
+			double _maxH = 0.0, double _xn_1_maxH = 0.0, double _minH = 0.0, double _xn_1_minH = 0.0 ) : vnext(_vnext), m(_m), k(_k), f(_f), f_st(_f_st), 
+			x0(_x0), u0(_u0), ud0(_ud0), b(_b), Egr(_Egr), h0(_h0), Nmax(_Nmax), E(_E), Emin(_Emin), control(_control), N(_N), b_xn(_b_xn), xn(_xn), 
 			vn_res(_vn_res), vdn_res(_vdn_res),/* maxE(_maxE), xn_maxE(_xn_maxE),*/ maxS(_maxS), xn_maxS(_xn_maxS), minS(_minS), xn_minS(_xn_minS),
 			count_dec(_count_dec), count_inc(_count_inc), maxH(_maxH), xn_1_maxH(_xn_1_maxH), minH(_minH), xn_1_minH(_xn_1_minH) {};
 	};
@@ -1342,12 +1343,14 @@ namespace NumTask11 {
 		InfoTextBox->Text += L"xₙ = " + inf.xn.ToString() + L", vₙ = " + inf.vn_res.ToString() +
 			L", v'ₙ = " + inf.vdn_res.ToString() + " (n = N)" + Environment::NewLine;
 		//InfoTextBox->Text += L"max |Eₙ| = " + inf.maxE.ToString() + L" при xₙ = " + inf.xn_maxE.ToString() + Environment::NewLine;
-		InfoTextBox->Text += L"max |S| = " + inf.maxS.ToString() + L" при xₙ = " + inf.xn_maxS.ToString() + Environment::NewLine;
-		InfoTextBox->Text += L"min |S| = " + inf.minS.ToString() + L" при xₙ = " + inf.xn_minS.ToString() + Environment::NewLine;
-		InfoTextBox->Text += L"Всего ум. шага = " + inf.count_dec.ToString() + Environment::NewLine;
-		InfoTextBox->Text += L"Всего ув. шага = " + inf.count_inc.ToString() + Environment::NewLine;
-		InfoTextBox->Text += L"max |hₙ| = " + inf.maxH.ToString() + L" при xₙ₊₁ = " + inf.xn_1_maxH.ToString() + Environment::NewLine;
-		InfoTextBox->Text += L"min |hₙ| = " + inf.minH.ToString() + L" при xₙ₊₁ = " + inf.xn_1_minH.ToString() + Environment::NewLine;
+		if (inf.control != CONST) {
+			InfoTextBox->Text += L"max |S| = " + inf.maxS.ToString() + L" при xₙ = " + inf.xn_maxS.ToString() + Environment::NewLine;
+			InfoTextBox->Text += L"min |S| = " + inf.minS.ToString() + L" при xₙ = " + inf.xn_minS.ToString() + Environment::NewLine;
+			InfoTextBox->Text += L"Всего ум. шага = " + inf.count_dec.ToString() + Environment::NewLine;
+			InfoTextBox->Text += L"Всего ув. шага = " + inf.count_inc.ToString() + Environment::NewLine;
+			InfoTextBox->Text += L"max |hₙ| = " + inf.maxH.ToString() + L" при xₙ₊₁ = " + inf.xn_1_maxH.ToString() + Environment::NewLine;
+			InfoTextBox->Text += L"min |hₙ| = " + inf.minH.ToString() + L" при xₙ₊₁ = " + inf.xn_1_minH.ToString() + Environment::NewLine;
+		}
 		InfoTextBox->Text += L"------------------------------------------------------" + Environment::NewLine;
 		InfoTextBox->SelectionStart = InfoTextBox->Text->Length;
 		InfoTextBox->ScrollToCaret();
@@ -1460,7 +1463,7 @@ namespace NumTask11 {
 			rkm->solve(*X, *H, *V, *V_cap, *OLP_Arr, *V_res, *step_dec, *step_inc);
 		} else {
 			rkm->setControl(control, vnext, Nmax, b, Egr);
-			rkm->solve(*X, *H, *V, *V_cap);
+			rkm->solve(*X, *H, *V, *V_cap, *OLP_Arr, *V_res);
 		}
 		N = X->size();
 
@@ -1544,26 +1547,33 @@ namespace NumTask11 {
 		//ind = max_elem_ind(*U_V);
 		//double maxE = (*U_V)[ind];
 		//double xn_maxE = (*X)[ind];
-		ind = max_elem_ind(*OLP_Arr);
-		double maxS = (*OLP_Arr)[ind];
-		double xn_maxS = (*X)[ind];
-		ind = min_elem_ind(*OLP_Arr);
-		double minS = (*OLP_Arr)[ind];
-		double xn_minS = (*X)[ind];
-		int count_dec = sum_elem(*step_dec);
-		int count_inc = sum_elem(*step_inc);
-		H->pop_back();
-		ind = max_elem_ind(*H);
-		double maxH = (*H)[ind];
-		double xn_1_maxH = (*X)[ind + 1];
-		ind = min_elem_ind(*H);
-		double minH = (*H)[ind];
-		double xn_1_minH = (*X)[ind + 1];
-		Info inf(vnext, m, k, f, f_st, x0, u0, ud0, b, Egr, h0, Nmax, E, Emin, control, (int)N - 1,
-			b - (*X)[N - 1], (*X)[N - 1], (*V_res)[0][N - 2], (*V_res)[1][N - 2], /*maxE, xn_maxE,*/ maxS, xn_maxS,
-			minS, xn_minS, count_dec, count_inc, maxH, xn_1_maxH, minH, xn_1_minH);
-		info_array->push_back(inf);
-		printInfo(inf);
+		if (control != CONST) {
+			ind = max_elem_ind(*OLP_Arr);
+			double maxS = (*OLP_Arr)[ind];
+			double xn_maxS = (*X)[ind];
+			ind = min_elem_ind(*OLP_Arr);
+			double minS = (*OLP_Arr)[ind];
+			double xn_minS = (*X)[ind];
+			int count_dec = sum_elem(*step_dec);
+			int count_inc = sum_elem(*step_inc);
+			H->pop_back();
+			ind = max_elem_ind(*H);
+			double maxH = (*H)[ind];
+			double xn_1_maxH = (*X)[ind + 1];
+			ind = min_elem_ind(*H);
+			double minH = (*H)[ind];
+			double xn_1_minH = (*X)[ind + 1];
+			Info inf(vnext, m, k, f, f_st, x0, u0, ud0, b, Egr, h0, Nmax, E, Emin, control, (int)N - 1,
+				b - (*X)[N - 1], (*X)[N - 1], (*V_res)[0][N - 2], (*V_res)[1][N - 2], /*maxE, xn_maxE,*/ maxS, xn_maxS,
+				minS, xn_minS, count_dec, count_inc, maxH, xn_1_maxH, minH, xn_1_minH);
+			info_array->push_back(inf);
+			printInfo(inf);
+		} else {
+			Info inf(vnext, m, k, f, f_st, x0, u0, ud0, b, Egr, h0, Nmax, E, Emin, control, (int)N - 1,
+				b - (*X)[N - 1], (*X)[N - 1], (*V_res)[0][N - 2], (*V_res)[1][N - 2]);
+			info_array->push_back(inf);
+			printInfo(inf);
+		}
 	}
 	// Вывод задания
 	private: System::Void TaskMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {

@@ -1,4 +1,6 @@
 ﻿  MainForm.cpp
 C:\Users\pinez\Downloads\git\numerical_task_11\NumTask11\MainForm.cpp(11,46): warning C4829: Возможно, неправильные параметры функции main. Рекомендуемый вариант - "int main(Platform::Array<Platform::String^>^ argv)"
+  numerical.cpp
+  Создание кода...
   MainForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   NumTask11.vcxproj -> C:\Users\pinez\Downloads\git\numerical_task_11\x64\Debug\NumTask11.exe

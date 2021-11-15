@@ -35,6 +35,5 @@ public:
 	int getP();
 
 	void solve(vector<double>& X, vector<double>& H, vector<vector<double>>& V, vector<vector<double>>& V_cap,
-		vector<double>& OLP = vector<double>(), vector<vector<double>>& V_res = vector<vector<double>>(), 
-		vector<int>& step_dec = vector<int>(), vector<int>& step_inc = vector<int>());
+		vector<double>& OLP, vector<vector<double>>& V_res, vector<int>& step_dec = vector<int>(), vector<int>& step_inc = vector<int>());
 };
