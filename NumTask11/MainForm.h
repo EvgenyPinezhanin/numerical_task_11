@@ -265,6 +265,7 @@ namespace NumTask11 {
 			NmaxToolTip->SetToolTip(NMaxLabel, "Максимально допустимое число шагов");
 			bToolTip->SetToolTip(BLabel, "Правая граница участка интегрирования");
 			EgrToolTip->SetToolTip(EgrLabel, "Параметр контроля выхода на правую границу");
+			EToolTip->SetToolTip(ELabel, "Параметр контроля локальной погрешности \"сверху\"");
 			EminToolTip->SetToolTip(EminLabel, "Параметр контроля локальной погрешности \"снизу\"");
 			defButToolTip->SetToolTip(DefEminButton, L" Eₘᵢₙ = E / 2^(p + 1), p - порядок метода");
 

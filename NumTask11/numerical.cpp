@@ -1,5 +1,35 @@
 #include"numerical.h"
 
+bool rkm_method::isCheck(double xn, double vn0, double vn1, double h) {
+    vector<vector<double>> k(4);
+    for (int i = 0; i < 4; i++) {
+        k[i].resize(2);
+    }
+
+    double tmp;
+    for (int i = 0; i < 2; i++) {
+        k[0][i] = f[i](xn, vn0, vn1);
+    }
+    tmp = vn1 + 2.0 * h / 3.0 * k[0][1];
+    for (int i = 0; i < 2; i++) {
+        k[1][i] = f[i](xn + 2.0 * h / 3.0, vn0 + 2.0 * h / 3.0 * k[0][0], tmp);
+    }
+    if (vn1 * tmp <= 0.0) return true;
+    tmp = vn1 + h / 3.0 * k[0][1] + h / 3.0 * k[1][1];
+    for (int i = 0; i < 2; i++) {
+        k[2][i] = f[i](xn + 2.0 * h / 3.0, vn0 + h / 3.0 * k[0][0] + h / 3.0 * k[1][0], tmp);
+    }
+    if (vn1 * tmp <= 0.0) return true;
+    tmp = vn1 + h / 4.0 * k[0][1] + 3.0 * h / 4.0 * k[2][1];
+    for (int i = 0; i < 2; i++) {
+        k[3][i] = f[i](xn + h, vn0 + h / 4.0 * k[0][0] + 3.0 * h / 4.0 * k[2][0], tmp);
+    }
+    if (vn1 * tmp <= 0.0) return true;
+    tmp = vn1 + h * k[0][1] - 3.0 * h * k[2][1] + 4.0 * h * k[3][1];
+    if (vn1 * tmp <= 0.0) return true;
+    return false;
+}
+
 rkm_method::rkm_method(double (*_f1)(double, double, double), bool _linear1, double (*_f2)(double, double, double), bool _linear2,
     double _x0, double _u0, double _ud0, double _h0, int _Nmax, double _b, double _Egr, double _E, double _Emin, CONTROL _control, VNEXT _vnext)
     : f(2), x0(_x0), u0(_u0), h0(_h0), Nmax(_Nmax), b(_b), Egr(_Egr), E(_E), Emin(_Emin), control(_control), vnext(_vnext) {
@@ -156,8 +186,11 @@ void rkm_method::solve(vector<double>& X, vector<double>& H, vector<vector<doubl
             }
             if (control == UPDOWN) {
                 if (S_norm < Emin) {
-                    hN *= 2.0;
-                    step_i++;
+                    // Проверка
+                    if (!isCheck(xN_1, vN_1[0], vN_1[1], hN)) {
+                        hN *= 2.0;
+                        step_i++;
+                    }
                 }
             }
         }

@@ -22,6 +22,8 @@ private:
 	bool isLinear[2];
 	int p;
 
+	bool isCheck(double xn, double vn0, double vn1, double h);
+
 public:
 	rkm_method(double (*_f1)(double, double, double), bool _linear1, double (*_f2)(double, double, double), bool _linear2, double _x0 = 0.0,
 		double _u0 = 0.0, double _ud0 = 0.0, double _h0 = 0.001, int _Nmax = 10000, double _b = 1.0,
