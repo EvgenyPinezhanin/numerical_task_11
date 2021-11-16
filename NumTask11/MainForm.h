@@ -40,11 +40,11 @@ namespace NumTask11 {
 		Info(VNEXT _vnext = VN, double _m = 0.0, double _k = 0.0, double _f = 0.0, double _f_st = 0.0, double _x0 = 0.0 , double _u0 = 0.0, 
 			double _ud0 = 0.0, double _b = 0.0, double _Egr = 0.0, double _h0 = 0.0, int _Nmax = 0, double _E = 0.0, double _Emin = 0.0, 
 			CONTROL _control =UPDOWN, int _N = 0, double _b_xn = 0.0, double _xn = 0.0, double _vn_res = 0.0, double _vdn_res = 0.0, /* double _maxE, 
-			double _xn_maxE, */ double _maxS = 0.0, double _xn_maxS = 0.0, double _minS = 0.0, double _xn_minS = 0.0, int _count_dec = 0, int _count_inc = 0,
-			double _maxH = 0.0, double _xn_1_maxH = 0.0, double _minH = 0.0, double _xn_1_minH = 0.0 ) : vnext(_vnext), m(_m), k(_k), f(_f), f_st(_f_st), 
-			x0(_x0), u0(_u0), ud0(_ud0), b(_b), Egr(_Egr), h0(_h0), Nmax(_Nmax), E(_E), Emin(_Emin), control(_control), N(_N), b_xn(_b_xn), xn(_xn), 
-			vn_res(_vn_res), vdn_res(_vdn_res),/* maxE(_maxE), xn_maxE(_xn_maxE),*/ maxS(_maxS), xn_maxS(_xn_maxS), minS(_minS), xn_minS(_xn_minS),
-			count_dec(_count_dec), count_inc(_count_inc), maxH(_maxH), xn_1_maxH(_xn_1_maxH), minH(_minH), xn_1_minH(_xn_1_minH) {};
+			double _xn_maxE, */ double _maxS = 0.0, double _xn_maxS = 0.0, double _minS = 0.0, double _xn_minS = 0.0, double _maxH = 0.0, 
+			double _xn_1_maxH = 0.0, double _minH = 0.0, double _xn_1_minH = 0.0, int _count_dec = 0, int _count_inc = 0) : vnext(_vnext), m(_m), 
+			k(_k), f(_f), f_st(_f_st), x0(_x0), u0(_u0), ud0(_ud0), b(_b), Egr(_Egr), h0(_h0), Nmax(_Nmax), E(_E), Emin(_Emin), control(_control), 
+			N(_N), b_xn(_b_xn), xn(_xn), vn_res(_vn_res), vdn_res(_vdn_res),/* maxE(_maxE), xn_maxE(_xn_maxE),*/ maxS(_maxS), xn_maxS(_xn_maxS), 
+			minS(_minS), xn_minS(_xn_minS), count_dec(_count_dec), count_inc(_count_inc), maxH(_maxH), xn_1_maxH(_xn_1_maxH), minH(_minH), xn_1_minH(_xn_1_minH) {};
 	};
 
 	// Функция для установки Control двойной буфферизации
@@ -446,6 +446,21 @@ namespace NumTask11 {
 			this->Chart2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->Chart3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->Table = (gcnew System::Windows::Forms::DataGridView());
+			this->n_count = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->hn_1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->xn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vdn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vCapn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vCapdn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->s_star = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vn_res = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->vdn_res = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->un = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->udn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->un_vn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dec_step = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->inc_step = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->InfoTextBox = (gcnew System::Windows::Forms::TextBox());
 			this->TableInfoLayoutPanel = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->Chart1Container = (gcnew System::Windows::Forms::SplitContainer());
@@ -464,21 +479,6 @@ namespace NumTask11 {
 			this->EminToolTip = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->defButToolTip = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->bToolTip = (gcnew System::Windows::Forms::ToolTip(this->components));
-			this->n_count = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->hn_1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->xn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->vn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->vdn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->vCapn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->vCapdn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->s_star = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->vn_res = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->vdn_res = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->un = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->udn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->un_vn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->dec_step = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->inc_step = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->MenuStrip->SuspendLayout();
 			this->ParamSystBox->SuspendLayout();
 			this->NUBox->SuspendLayout();
@@ -931,6 +931,8 @@ namespace NumTask11 {
 			// 
 			// Chart1
 			// 
+			chartArea1->AxisX->Title = L"Время";
+			chartArea1->AxisY->Title = L"Отклонение";
 			chartArea1->Name = L"ChartArea1";
 			this->Chart1->ChartAreas->Add(chartArea1);
 			this->Chart1->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -944,11 +946,13 @@ namespace NumTask11 {
 			title1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			title1->Name = L"Title1";
-			title1->Text = L"График зависимости v(x)";
+			title1->Text = L"График зависимости отклонения груза от времени";
 			this->Chart1->Titles->Add(title1);
 			// 
 			// Chart2
 			// 
+			chartArea2->AxisX->Title = L"Время";
+			chartArea2->AxisY->Title = L"Скорость";
 			chartArea2->Name = L"ChartArea1";
 			this->Chart2->ChartAreas->Add(chartArea2);
 			this->Chart2->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -962,11 +966,13 @@ namespace NumTask11 {
 			title2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			title2->Name = L"Title1";
-			title2->Text = L"График зависимости v\'(x)";
+			title2->Text = L"График зависимости скорости груза от времени";
 			this->Chart2->Titles->Add(title2);
 			// 
 			// Chart3
 			// 
+			chartArea3->AxisX->Title = L"Отклонение";
+			chartArea3->AxisY->Title = L"Скорость";
 			chartArea3->Name = L"ChartArea1";
 			this->Chart3->ChartAreas->Add(chartArea3);
 			this->Chart3->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -980,7 +986,7 @@ namespace NumTask11 {
 			title3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			title3->Name = L"Title1";
-			title3->Text = L"График зависимости v\'(v)";
+			title3->Text = L"Фазовый портрет";
 			this->Chart3->Titles->Add(title3);
 			// 
 			// Table
@@ -1013,6 +1019,126 @@ namespace NumTask11 {
 			this->Table->RowTemplate->Height = 24;
 			this->Table->Size = System::Drawing::Size(929, 427);
 			this->Table->TabIndex = 12;
+			// 
+			// n_count
+			// 
+			this->n_count->HeaderText = L"n";
+			this->n_count->MinimumWidth = 6;
+			this->n_count->Name = L"n_count";
+			this->n_count->ReadOnly = true;
+			this->n_count->Width = 125;
+			// 
+			// hn_1
+			// 
+			this->hn_1->HeaderText = L"hₙ₋₁";
+			this->hn_1->MinimumWidth = 6;
+			this->hn_1->Name = L"hn_1";
+			this->hn_1->ReadOnly = true;
+			this->hn_1->Width = 140;
+			// 
+			// xn
+			// 
+			this->xn->HeaderText = L"xₙ";
+			this->xn->MinimumWidth = 6;
+			this->xn->Name = L"xn";
+			this->xn->ReadOnly = true;
+			this->xn->Width = 140;
+			// 
+			// vn
+			// 
+			this->vn->HeaderText = L"vₙ";
+			this->vn->MinimumWidth = 6;
+			this->vn->Name = L"vn";
+			this->vn->ReadOnly = true;
+			this->vn->Width = 140;
+			// 
+			// vdn
+			// 
+			this->vdn->HeaderText = L"v\'ₙ";
+			this->vdn->MinimumWidth = 6;
+			this->vdn->Name = L"vdn";
+			this->vdn->ReadOnly = true;
+			this->vdn->Width = 140;
+			// 
+			// vCapn
+			// 
+			this->vCapn->HeaderText = L"v̂ₙ";
+			this->vCapn->MinimumWidth = 6;
+			this->vCapn->Name = L"vCapn";
+			this->vCapn->ReadOnly = true;
+			this->vCapn->Width = 140;
+			// 
+			// vCapdn
+			// 
+			this->vCapdn->HeaderText = L"v̂\'ₙ";
+			this->vCapdn->MinimumWidth = 6;
+			this->vCapdn->Name = L"vCapdn";
+			this->vCapdn->ReadOnly = true;
+			this->vCapdn->Width = 140;
+			// 
+			// s_star
+			// 
+			this->s_star->HeaderText = L"||S*||";
+			this->s_star->MinimumWidth = 6;
+			this->s_star->Name = L"s_star";
+			this->s_star->ReadOnly = true;
+			this->s_star->Width = 140;
+			// 
+			// vn_res
+			// 
+			this->vn_res->HeaderText = L"vₙ итог";
+			this->vn_res->MinimumWidth = 6;
+			this->vn_res->Name = L"vn_res";
+			this->vn_res->ReadOnly = true;
+			this->vn_res->Width = 140;
+			// 
+			// vdn_res
+			// 
+			this->vdn_res->HeaderText = L"v\'ₙ итог";
+			this->vdn_res->MinimumWidth = 6;
+			this->vdn_res->Name = L"vdn_res";
+			this->vdn_res->ReadOnly = true;
+			this->vdn_res->Width = 140;
+			// 
+			// un
+			// 
+			this->un->HeaderText = L"uₙ";
+			this->un->MinimumWidth = 6;
+			this->un->Name = L"un";
+			this->un->ReadOnly = true;
+			this->un->Width = 140;
+			// 
+			// udn
+			// 
+			this->udn->HeaderText = L"u\'ₙ";
+			this->udn->MinimumWidth = 6;
+			this->udn->Name = L"udn";
+			this->udn->ReadOnly = true;
+			this->udn->Width = 140;
+			// 
+			// un_vn
+			// 
+			this->un_vn->HeaderText = L"|Uₙ-Vₙ итог|";
+			this->un_vn->MinimumWidth = 6;
+			this->un_vn->Name = L"un_vn";
+			this->un_vn->ReadOnly = true;
+			this->un_vn->Width = 140;
+			// 
+			// dec_step
+			// 
+			this->dec_step->HeaderText = L"Ум. шага";
+			this->dec_step->MinimumWidth = 6;
+			this->dec_step->Name = L"dec_step";
+			this->dec_step->ReadOnly = true;
+			this->dec_step->Width = 125;
+			// 
+			// inc_step
+			// 
+			this->inc_step->HeaderText = L"Ув. шага";
+			this->inc_step->MinimumWidth = 6;
+			this->inc_step->Name = L"inc_step";
+			this->inc_step->ReadOnly = true;
+			this->inc_step->Width = 125;
 			// 
 			// InfoTextBox
 			// 
@@ -1084,125 +1210,6 @@ namespace NumTask11 {
 			this->Chart2Container->Size = System::Drawing::Size(1258, 474);
 			this->Chart2Container->SplitterDistance = 629;
 			this->Chart2Container->TabIndex = 0;
-			// 
-			// n_count
-			// 
-			this->n_count->HeaderText = L"n";
-			this->n_count->MinimumWidth = 6;
-			this->n_count->Name = L"n_count";
-			this->n_count->ReadOnly = true;
-			// 
-			// hn_1
-			// 
-			this->hn_1->HeaderText = L"hₙ₋₁";
-			this->hn_1->MinimumWidth = 6;
-			this->hn_1->Name = L"hn_1";
-			this->hn_1->ReadOnly = true;
-			this->hn_1->Width = 140;
-			// 
-			// xn
-			// 
-			this->xn->HeaderText = L"xₙ";
-			this->xn->MinimumWidth = 6;
-			this->xn->Name = L"xn";
-			this->xn->ReadOnly = true;
-			this->xn->Width = 140;
-			// 
-			// vn
-			// 
-			this->vn->HeaderText = L"vₙ";
-			this->vn->MinimumWidth = 6;
-			this->vn->Name = L"vn";
-			this->vn->ReadOnly = true;
-			this->vn->Width = 140;
-			// 
-			// vdn
-			// 
-			this->vdn->HeaderText = L"v\'ₙ";
-			this->vdn->MinimumWidth = 6;
-			this->vdn->Name = L"vdn";
-			this->vdn->ReadOnly = true;
-			this->vdn->Width = 140;
-			// 
-			// vCapn
-			// 
-			this->vCapn->HeaderText = L"v̂ₙ";
-			this->vCapn->MinimumWidth = 6;
-			this->vCapn->Name = L"vCapn";
-			this->vCapn->ReadOnly = true;
-			this->vCapn->Width = 140;
-			// 
-			// vCapdn
-			// 
-			this->vCapdn->HeaderText = L"v̂\'ₙ";
-			this->vCapdn->MinimumWidth = 6;
-			this->vCapdn->Name = L"vCapdn";
-			this->vCapdn->ReadOnly = true;
-			this->vCapdn->Width = 140;
-			// 
-			// s_star
-			// 
-			this->s_star->HeaderText = L"S*";
-			this->s_star->MinimumWidth = 6;
-			this->s_star->Name = L"s_star";
-			this->s_star->ReadOnly = true;
-			this->s_star->Width = 140;
-			// 
-			// vn_res
-			// 
-			this->vn_res->HeaderText = L"vₙ итог";
-			this->vn_res->MinimumWidth = 6;
-			this->vn_res->Name = L"vn_res";
-			this->vn_res->ReadOnly = true;
-			this->vn_res->Width = 140;
-			// 
-			// vdn_res
-			// 
-			this->vdn_res->HeaderText = L"v\'ₙ итог";
-			this->vdn_res->MinimumWidth = 6;
-			this->vdn_res->Name = L"vdn_res";
-			this->vdn_res->ReadOnly = true;
-			this->vdn_res->Width = 140;
-			// 
-			// un
-			// 
-			this->un->HeaderText = L"uₙ";
-			this->un->MinimumWidth = 6;
-			this->un->Name = L"un";
-			this->un->ReadOnly = true;
-			this->un->Width = 140;
-			// 
-			// udn
-			// 
-			this->udn->HeaderText = L"u\'ₙ";
-			this->udn->MinimumWidth = 6;
-			this->udn->Name = L"udn";
-			this->udn->ReadOnly = true;
-			this->udn->Width = 140;
-			// 
-			// un_vn
-			// 
-			this->un_vn->HeaderText = L"|Uₙ-Vₙ итог|";
-			this->un_vn->MinimumWidth = 6;
-			this->un_vn->Name = L"un_vn";
-			this->un_vn->ReadOnly = true;
-			this->un_vn->Width = 140;
-			// 
-			// dec_step
-			// 
-			this->dec_step->HeaderText = L"Ум. шага";
-			this->dec_step->MinimumWidth = 6;
-			this->dec_step->Name = L"dec_step";
-			this->dec_step->ReadOnly = true;
-			this->dec_step->Width = 125;
-			// 
-			// inc_step
-			// 
-			this->inc_step->HeaderText = L"Ув. шага";
-			this->inc_step->MinimumWidth = 6;
-			this->inc_step->Name = L"inc_step";
-			this->inc_step->ReadOnly = true;
-			this->inc_step->Width = 125;
 			// 
 			// MainForm
 			// 
@@ -1343,14 +1350,14 @@ namespace NumTask11 {
 		InfoTextBox->Text += L"xₙ = " + inf.xn.ToString() + L", vₙ = " + inf.vn_res.ToString() +
 			L", v'ₙ = " + inf.vdn_res.ToString() + " (n = N)" + Environment::NewLine;
 		//InfoTextBox->Text += L"max |Eₙ| = " + inf.maxE.ToString() + L" при xₙ = " + inf.xn_maxE.ToString() + Environment::NewLine;
+		InfoTextBox->Text += L"max ||S*|| = " + inf.maxS.ToString() + L" при xₙ = " + inf.xn_maxS.ToString() + Environment::NewLine;
+		InfoTextBox->Text += L"min ||S*|| = " + inf.minS.ToString() + L" при xₙ = " + inf.xn_minS.ToString() + Environment::NewLine;
 		if (inf.control != CONST) {
-			InfoTextBox->Text += L"max |S| = " + inf.maxS.ToString() + L" при xₙ = " + inf.xn_maxS.ToString() + Environment::NewLine;
-			InfoTextBox->Text += L"min |S| = " + inf.minS.ToString() + L" при xₙ = " + inf.xn_minS.ToString() + Environment::NewLine;
 			InfoTextBox->Text += L"Всего ум. шага = " + inf.count_dec.ToString() + Environment::NewLine;
 			InfoTextBox->Text += L"Всего ув. шага = " + inf.count_inc.ToString() + Environment::NewLine;
-			InfoTextBox->Text += L"max |hₙ| = " + inf.maxH.ToString() + L" при xₙ₊₁ = " + inf.xn_1_maxH.ToString() + Environment::NewLine;
-			InfoTextBox->Text += L"min |hₙ| = " + inf.minH.ToString() + L" при xₙ₊₁ = " + inf.xn_1_minH.ToString() + Environment::NewLine;
 		}
+		InfoTextBox->Text += L"max |hₙ| = " + inf.maxH.ToString() + L" при xₙ₊₁ = " + inf.xn_1_maxH.ToString() + Environment::NewLine;
+		InfoTextBox->Text += L"min |hₙ| = " + inf.minH.ToString() + L" при xₙ₊₁ = " + inf.xn_1_minH.ToString() + Environment::NewLine;
 		InfoTextBox->Text += L"------------------------------------------------------" + Environment::NewLine;
 		InfoTextBox->SelectionStart = InfoTextBox->Text->Length;
 		InfoTextBox->ScrollToCaret();
@@ -1530,13 +1537,13 @@ namespace NumTask11 {
 			Table->Rows[i]->Cells[4]->Value = (*V)[1][i].ToString();
 			Table->Rows[i]->Cells[5]->Value = (*V_cap)[0][i - 1].ToString();
 			Table->Rows[i]->Cells[6]->Value = (*V_cap)[1][i - 1].ToString();
+			Table->Rows[i]->Cells[7]->Value = (*OLP_Arr)[i - 1].ToString();
+			Table->Rows[i]->Cells[8]->Value = (*V_res)[0][i - 1].ToString();
+			Table->Rows[i]->Cells[9]->Value = (*V_res)[1][i - 1].ToString();
 			//Table->Rows[i]->Cells[10]->Value = (*U)[0][i].ToString();
 			//Table->Rows[i]->Cells[11]->Value = (*U)[1][i].ToString();
 			//Table->Rows[i]->Cells[12]->Value = (*U_V)[i].ToString();
 			if (control != CONST) {
-				Table->Rows[i]->Cells[7]->Value = (*OLP_Arr)[i - 1].ToString();
-				Table->Rows[i]->Cells[8]->Value = (*V_res)[0][i - 1].ToString();
-				Table->Rows[i]->Cells[9]->Value = (*V_res)[1][i - 1].ToString();
 				Table->Rows[i]->Cells[13]->Value = (*step_dec)[i - 1].ToString();
 				Table->Rows[i]->Cells[14]->Value = (*step_inc)[i - 1].ToString();
 			}
@@ -1547,30 +1554,32 @@ namespace NumTask11 {
 		//ind = max_elem_ind(*U_V);
 		//double maxE = (*U_V)[ind];
 		//double xn_maxE = (*X)[ind];
+		ind = max_elem_ind(*OLP_Arr);
+		double maxS = (*OLP_Arr)[ind];
+		double xn_maxS = (*X)[ind];
+		ind = min_elem_ind(*OLP_Arr);
+		double minS = (*OLP_Arr)[ind];
+		double xn_minS = (*X)[ind];
+		H->pop_back();
+		ind = max_elem_ind(*H);
+		double maxH = (*H)[ind];
+		double xn_1_maxH = (*X)[ind + 1];
+		ind = min_elem_ind(*H);
+		double minH = (*H)[ind];
+		double xn_1_minH = (*X)[ind + 1];
+		int count_dec, count_inc;
 		if (control != CONST) {
-			ind = max_elem_ind(*OLP_Arr);
-			double maxS = (*OLP_Arr)[ind];
-			double xn_maxS = (*X)[ind];
-			ind = min_elem_ind(*OLP_Arr);
-			double minS = (*OLP_Arr)[ind];
-			double xn_minS = (*X)[ind];
 			int count_dec = sum_elem(*step_dec);
 			int count_inc = sum_elem(*step_inc);
-			H->pop_back();
-			ind = max_elem_ind(*H);
-			double maxH = (*H)[ind];
-			double xn_1_maxH = (*X)[ind + 1];
-			ind = min_elem_ind(*H);
-			double minH = (*H)[ind];
-			double xn_1_minH = (*X)[ind + 1];
 			Info inf(vnext, m, k, f, f_st, x0, u0, ud0, b, Egr, h0, Nmax, E, Emin, control, (int)N - 1,
 				b - (*X)[N - 1], (*X)[N - 1], (*V_res)[0][N - 2], (*V_res)[1][N - 2], /*maxE, xn_maxE,*/ maxS, xn_maxS,
-				minS, xn_minS, count_dec, count_inc, maxH, xn_1_maxH, minH, xn_1_minH);
+				minS, xn_minS, maxH, xn_1_maxH, minH, xn_1_minH, count_dec, count_inc);
 			info_array->push_back(inf);
 			printInfo(inf);
 		} else {
 			Info inf(vnext, m, k, f, f_st, x0, u0, ud0, b, Egr, h0, Nmax, E, Emin, control, (int)N - 1,
-				b - (*X)[N - 1], (*X)[N - 1], (*V_res)[0][N - 2], (*V_res)[1][N - 2]);
+				b - (*X)[N - 1], (*X)[N - 1], (*V_res)[0][N - 2], (*V_res)[1][N - 2], /*maxE, xn_maxE,*/ maxS, xn_maxS,
+				minS, xn_minS, maxH, xn_1_maxH, minH, xn_1_minH);
 			info_array->push_back(inf);
 			printInfo(inf);
 		}
@@ -1588,11 +1597,17 @@ namespace NumTask11 {
 		if (ControlComboBox->SelectedIndex == 2) {
 			EminTextBox->Enabled = false;
 			ETextBox->Enabled = false;
+			inc_step->Visible = false;
+			dec_step->Visible = false;
 		} else if (ControlComboBox->SelectedIndex == 1) {
 			EminTextBox->Enabled = false;
+			inc_step->Visible = true;
+			dec_step->Visible = true;
 		} else {
 			EminTextBox->Enabled = true;
 			ETextBox->Enabled = true;
+			inc_step->Visible = true;
+			dec_step->Visible = true;
 		}
 	}
 	// Вычисление Emin
@@ -1607,7 +1622,7 @@ namespace NumTask11 {
 		}
 		EminTextBox->Text = (E / pow(2, rkm->getP() + 1)).ToString("N17", System::Globalization::CultureInfo::InvariantCulture);
 	}
-	// Выпавнивание графиков
+	// Выравнивание графиков
 	private: System::Void AlignChartMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		Chart1Container->SplitterDistance = (int)(Chart1Container->Size.Width / 3.0 * 2.0);
 		Chart2Container->SplitterDistance = (int)(Chart2Container->Size.Width / 2.0);
