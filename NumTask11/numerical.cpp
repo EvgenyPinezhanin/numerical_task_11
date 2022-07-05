@@ -177,7 +177,7 @@ void rkm_method::solve(vector<double>& X, vector<double>& H, vector<vector<doubl
         S_norm = max(abs(S[0]), abs(S[1]));
 
         // Контроль локальной погрешности (учитывается тип контроля погрешности)
-        if (control != CONST) {
+        if (control != MATH_CONST) {
             if (S_norm > E) {
                 hN /= 2.0;
                 H[N] = hN;

@@ -1353,7 +1353,7 @@ namespace NumTask11 {
 		//InfoTextBox->Text += L"max |Eₙ| = " + inf.maxE.ToString() + L" при xₙ = " + inf.xn_maxE.ToString() + Environment::NewLine;
 		InfoTextBox->Text += L"max ||S*|| = " + inf.maxS.ToString() + L" при xₙ = " + inf.xn_maxS.ToString() + Environment::NewLine;
 		InfoTextBox->Text += L"min ||S*|| = " + inf.minS.ToString() + L" при xₙ = " + inf.xn_minS.ToString() + Environment::NewLine;
-		if (inf.control != CONST) {
+		if (inf.control != MATH_CONST) {
 			InfoTextBox->Text += L"Всего ум. шага = " + inf.count_dec.ToString() + Environment::NewLine;
 			InfoTextBox->Text += L"Всего ув. шага = " + inf.count_inc.ToString() + Environment::NewLine;
 		}
@@ -1449,7 +1449,7 @@ namespace NumTask11 {
 		rkm->setH0(h0);
 		vnext = (VNEXT)VnComboBox->SelectedIndex;
 		control = (CONTROL)ControlComboBox->SelectedIndex;
-		if (control != CONST) {
+		if (control != MATH_CONST) {
 			if (!Double::TryParse(ETextBox->Text, System::Globalization::NumberStyles::Float, System::Globalization::CultureInfo::InvariantCulture, E)) {
 				MessageBox::Show("E не число", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
 				return;
@@ -1544,7 +1544,7 @@ namespace NumTask11 {
 			//Table->Rows[i]->Cells[10]->Value = (*U)[0][i].ToString();
 			//Table->Rows[i]->Cells[11]->Value = (*U)[1][i].ToString();
 			//Table->Rows[i]->Cells[12]->Value = (*U_V)[i].ToString();
-			if (control != CONST) {
+			if (control != MATH_CONST) {
 				Table->Rows[i]->Cells[13]->Value = (*step_dec)[i - 1].ToString();
 				Table->Rows[i]->Cells[14]->Value = (*step_inc)[i - 1].ToString();
 			}
@@ -1569,7 +1569,7 @@ namespace NumTask11 {
 		double minH = (*H)[ind];
 		double xn_1_minH = (*X)[ind + 1];
 		int count_dec, count_inc;
-		if (control != CONST) {
+		if (control != MATH_CONST) {
 			int count_dec = sum_elem(*step_dec);
 			int count_inc = sum_elem(*step_inc);
 			Info inf(vnext, m, k, f, f_st, x0, u0, ud0, b, Egr, h0, Nmax, E, Emin, control, (int)N - 1,

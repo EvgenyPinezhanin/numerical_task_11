@@ -4,7 +4,7 @@
 
 using namespace std;
 
-enum CONTROL { UPDOWN, UP, CONST };
+enum CONTROL { UPDOWN, UP, MATH_CONST };
 enum VNEXT { VN, VNCAP, VNÑOR };
 
 class rkm_method {
