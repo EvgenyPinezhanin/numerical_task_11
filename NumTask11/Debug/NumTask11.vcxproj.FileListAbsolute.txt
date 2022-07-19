@@ -1,6 +1,0 @@
-C:\Users\pinez\source\repos\NumTask11\NumTask11\Debug\NumTask11.vcxproj.AssemblyReference.cache
-C:\Users\pinez\source\repos\NumTask11\NumTask11\Debug\NumTask11.MainForm.resources
-C:\Users\pinez\source\repos\NumTask11\NumTask11\Debug\NumTask11.resource.resources
-C:\Users\pinez\source\repos\NumTask11\NumTask11\Debug\NumTask11.TaskForm.resources
-C:\Users\pinez\source\repos\NumTask11\NumTask11\Debug\NumTask11.vcxproj.GenerateResource.cache
-C:\Users\pinez\source\repos\NumTask11\NumTask11\Debug\NumTask11.MethodForm.resources

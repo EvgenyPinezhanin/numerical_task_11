@@ -1570,8 +1570,8 @@ namespace NumTask11 {
 		double xn_1_minH = (*X)[ind + 1];
 		int count_dec, count_inc;
 		if (control != MATH_CONST) {
-			int count_dec = sum_elem(*step_dec);
-			int count_inc = sum_elem(*step_inc);
+			count_dec = sum_elem(*step_dec);
+			count_inc = sum_elem(*step_inc);
 			Info inf(vnext, m, k, f, f_st, x0, u0, ud0, b, Egr, h0, Nmax, E, Emin, control, (int)N - 1,
 				b - (*X)[N - 1], (*X)[N - 1], (*V_res)[0][N - 2], (*V_res)[1][N - 2], /*maxE, xn_maxE,*/ maxS, xn_maxS,
 				minS, xn_minS, maxH, xn_1_maxH, minH, xn_1_minH, count_dec, count_inc);
